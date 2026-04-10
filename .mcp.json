@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "scrape-tool": {
+      "command": "node",
+      "args": ["mcp/server.js"],
+      "env": {
+        "SCRAPE_TOOL_URL": "http://localhost:3000"
+      }
+    }
+  }
+}
