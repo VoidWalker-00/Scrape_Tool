@@ -50,8 +50,11 @@ class Server {
   // resultsDir   — defaults to Data/Results/
   constructor({ port = 3000, selectorsDir, resultsDir } = {}) {
     this.#port = port;
-    this.#selectorsDir = selectorsDir ?? path.join(__dirname, 'Data', 'Selectors');
-    this.#resultsDir   = resultsDir   ?? path.join(__dirname, 'Data', 'Results');
+    // In packaged builds SCRAPE_TOOL_DATA points to a writable app data dir;
+    // in development __dirname (project root) is used as before.
+    const dataRoot = process.env.SCRAPE_TOOL_DATA || __dirname;
+    this.#selectorsDir = selectorsDir ?? path.join(dataRoot, 'Data', 'Selectors');
+    this.#resultsDir   = resultsDir   ?? path.join(dataRoot, 'Data', 'Results');
 
     this.#app = express();
     this.#app.use(express.json());

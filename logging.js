@@ -2,8 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const { EventEmitter } = require('events');
 
-// Directory where log files are saved
-const LOG_DIR = path.join(__dirname, 'Logs');
+// Directory where log files are saved.
+// In packaged builds SCRAPE_TOOL_DATA points to a writable app data dir;
+// in development __dirname (project root) is used as before.
+const LOG_DIR = path.join(process.env.SCRAPE_TOOL_DATA || __dirname, 'Logs');
 
 // Rotate to a new file once this size is reached
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
