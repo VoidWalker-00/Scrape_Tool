@@ -100,12 +100,40 @@ cargo tauri dev
 cargo tauri build
 ```
 
-Outputs a `.deb` package on Linux. For other platforms (`.msi`, `.exe`, `.dmg`), use the GitHub Actions release workflow — push a version tag to trigger automated builds:
+Outputs a `.deb` package on Linux. For other platforms, use the GitHub Actions release workflow described below.
+
+---
+
+## GitHub Actions — Automated Releases
+
+The workflow at `.github/workflows/release.yml` builds installers for all platforms automatically on GitHub's servers. No local Rust/Tauri setup needed for releasing.
+
+**Trigger:** push a version tag
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
+
+**What it does:**
+
+Three jobs run in parallel — one per platform:
+
+| Runner | Output files |
+|--------|-------------|
+| `ubuntu-22.04` | `.deb` (Debian/Ubuntu), `.rpm` (Fedora/RHEL) |
+| `windows-latest` | `.exe` (NSIS installer), `.msi` |
+| `macos-latest` | `.dmg` |
+
+All artifacts are attached to a **draft** GitHub Release. Review and publish it from the Releases page.
+
+**Each job:**
+1. Installs Node.js 20 and Rust (stable)
+2. Runs `npm ci`
+3. Builds the Tauri app with `tauri-apps/tauri-action`
+4. Uploads the installer to the release
+
+> **Note:** Users must have **Node.js installed** on their machine. The app spawns `node server.js` as its backend at runtime — it is not bundled into the binary.
 
 ---
 
