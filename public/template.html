@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component Reference — Scrape Tool</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- Nav injected by layout.js -->
+  <script src="/js/layout.js"></script>
+
+  <main class="tw-main">
+
+    <!-- ── Page header ─────────────────────────────────────────────── -->
+    <div class="page-header">
+      <h1>Component Reference</h1>
+      <button class="btn btn-primary">Primary Action</button>
+    </div>
+
+    <p class="text-muted">
+      All reusable UI components for the Scrape Tool dashboard.
+      Import <code>/css/style.css</code> and <code>/js/layout.js</code> in any page to use them.
+    </p>
+
+    <hr />
+
+    <!-- ── Typography ──────────────────────────────────────────────── -->
+    <section>
+      <h2>Typography</h2>
+      <div class="card">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <p>Body text — warm beige on dark paper. <a href="#">Links use the accent green.</a></p>
+        <p class="text-muted">Muted text for secondary information.</p>
+        <p class="text-faint">Faint text for placeholders and disabled states.</p>
+        <p class="text-mono">Monospace text for code, IDs, and filenames.</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Buttons ─────────────────────────────────────────────────── -->
+    <section>
+      <h2>Buttons</h2>
+      <div class="card flex gap-1" style="flex-wrap:wrap; align-items:center;">
+        <button class="btn">Default</button>
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-sm">Small</button>
+        <button class="btn btn-primary btn-sm">Primary SM</button>
+        <button class="btn btn-danger btn-sm">Danger SM</button>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Badges ──────────────────────────────────────────────────── -->
+    <section>
+      <h2>Badges</h2>
+      <div class="card flex gap-1" style="align-items:center;">
+        <span class="badge badge-success">success</span>
+        <span class="badge badge-warn">warning</span>
+        <span class="badge badge-error">error</span>
+        <span class="badge badge-muted">muted</span>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Cards ───────────────────────────────────────────────────── -->
+    <section>
+      <h2>Cards</h2>
+      <div class="card">
+        <h3>Card title</h3>
+        <p>Cards group related content on the elevated background. Stack them vertically — each has a 1 rem bottom margin.</p>
+      </div>
+      <div class="card">
+        <p>Second card in the same section.</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Table ───────────────────────────────────────────────────── -->
+    <section>
+      <h2>Table</h2>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table class="tw-table">
+          <thead>
+            <tr>
+              <th>Job</th>
+              <th>Runs</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-mono">books-scrape</td>
+              <td>12</td>
+              <td><span class="badge badge-success">ok</span></td>
+              <td><button class="btn btn-sm">Run</button></td>
+            </tr>
+            <tr>
+              <td class="text-mono">news-feed</td>
+              <td>3</td>
+              <td><span class="badge badge-warn">captcha</span></td>
+              <td><button class="btn btn-sm">Run</button></td>
+            </tr>
+            <tr>
+              <td class="text-mono">price-watch</td>
+              <td>0</td>
+              <td><span class="badge badge-muted">never run</span></td>
+              <td><button class="btn btn-sm">Run</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Forms ───────────────────────────────────────────────────── -->
+    <section>
+      <h2>Forms</h2>
+      <div class="card">
+        <div class="form-group">
+          <label for="ex-url">Target URL</label>
+          <input type="url" id="ex-url" placeholder="https://example.com" />
+        </div>
+        <div class="form-group">
+          <label for="ex-mode">Mode</label>
+          <select id="ex-mode">
+            <option>Single</option>
+            <option>All</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ex-notes">Notes</label>
+          <textarea id="ex-notes" placeholder="Optional notes about this job…"></textarea>
+        </div>
+
+        <!-- Field row — selector / mode / type / actions -->
+        <label>Field row (job builder grid)</label>
+        <div class="field-row">
+          <input type="text" placeholder="CSS selector" />
+          <select>
+            <option>Single</option>
+            <option>All</option>
+          </select>
+          <select>
+            <option>Text</option>
+            <option>URL</option>
+            <option>DateTime</option>
+          </select>
+          <button class="btn btn-sm">Test</button>
+          <button class="btn btn-danger btn-sm">✕</button>
+        </div>
+
+        <div class="mt-2">
+          <button class="btn btn-primary">Save</button>
+          <button class="btn btn-ghost">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Log box ─────────────────────────────────────────────────── -->
+    <section>
+      <h2>Log Box</h2>
+      <div class="log-box">
+        <div class="log-info">[INFO]  Browser launched</div>
+        <div class="log-info">[INFO]  Navigated to https://books.toscrape.com/</div>
+        <div class="log-warn">[WARN]  Captcha detected on page</div>
+        <div class="log-error">[ERROR] Captcha solver failed: timeout</div>
+        <div class="log-info">[INFO]  Page 1 scraped</div>
+        <div class="log-info">[INFO]  Scrape complete — 1 page(s) collected</div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── Code preview ─────────────────────────────────────────────── -->
+    <section>
+      <h2>Code / JSON Preview</h2>
+      <pre class="code-preview">{
+  "URL": "https://books.toscrape.com/",
+  "Page_Title": ["h1", "Single", "Text"],
+  "Books": [
+    { "Title": ["h3 a", "All", "Text"],
+      "Price": [".price_color", "All", "Text"] },
+    "All",
+    "Group"
+  ]
+}</pre>
+    </section>
+
+    <hr />
+
+    <!-- ── Empty state ──────────────────────────────────────────────── -->
+    <section>
+      <h2>Empty State</h2>
+      <div class="card">
+        <div class="empty-state">
+          No jobs yet. <a href="/index.html">Go to Dashboard →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

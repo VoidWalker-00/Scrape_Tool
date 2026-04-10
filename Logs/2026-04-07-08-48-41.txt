@@ -1,0 +1,3 @@
+[2026-04-07 08:48:41] [INFO ] Hi, this log test
+[2026-04-07 08:48:41] [WARN ] Hi, this log test
+[2026-04-07 08:48:41] [ERROR] Hi, this log test

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — Scrape Tool</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/job.css" />
+  <link rel="stylesheet" href="/css/results.css" />
+  <link rel="stylesheet" href="/css/notifications.css" />
+</head>
+<body>
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/notifier.js"></script>
+  <main class="tw-main">
+
+    <div class="page-nav">
+      <a id="back-link" href="#" class="btn btn-ghost btn-sm">← Config / Setup</a>
+      <h2 id="job-heading">…</h2>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="results">Results & Logs</button>
+      <button class="tab-btn" data-tab="history">History</button>
+      <button class="tab-btn" data-tab="export">Export</button>
+    </div>
+
+    <!-- Results & Logs tab -->
+    <div id="tab-results" class="tab-panel active">
+      <div>
+        <div class="log-toggle-bar">
+          <span class="text-muted" style="font-size:0.85rem;">Logs</span>
+          <button id="log-toggle-btn" class="btn btn-ghost btn-sm">Hide Logs</button>
+        </div>
+        <div id="log-box" class="log-box"></div>
+      </div>
+      <div id="results-area" style="margin-top:1rem;">
+        <div class="empty-state">Loading…</div>
+      </div>
+    </div>
+
+    <!-- History tab -->
+    <div id="tab-history" class="tab-panel">
+      <div class="card" style="padding:0;overflow:hidden;">
+        <table class="tw-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Items</th>
+              <th>Status</th>
+              <th>Run ID</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="4" class="empty-state">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Export tab -->
+    <div id="tab-export" class="tab-panel">
+
+      <!-- 1. Output Settings -->
+      <div class="setup-section">
+        <h3>Output Settings</h3>
+        <div class="form-group">
+          <label for="export-folder">Folder</label>
+          <div class="export-path-row">
+            <input type="text" id="export-folder" placeholder="/home/user/exports" style="flex:1;" />
+            <button type="button" id="export-folder-browse" class="btn btn-ghost">Browse…</button>
+            <span id="export-path-status" class="export-path-status"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="export-basename">File name</label>
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <input type="text" id="export-basename" placeholder="File_Name" style="max-width:200px;" />
+            <select id="export-basename-field" style="max-width:180px;">
+              <option value="">— Static —</option>
+            </select>
+            <span id="export-ext-badge" class="text-faint" style="font-size:0.875rem;">.json</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Format</label>
+          <div class="export-format-group">
+            <label class="export-format-btn">
+              <input type="radio" name="export-format" value="json" checked /> JSON
+            </label>
+            <label class="export-format-btn">
+              <input type="radio" name="export-format" value="csv" /> CSV
+            </label>
+            <label class="export-format-btn">
+              <input type="radio" name="export-format" value="excel" /> Excel
+            </label>
+          </div>
+        </div>
+        <button id="export-save-settings-btn" class="btn btn-sm">Save Settings</button>
+        <span id="export-settings-status" class="text-muted" style="font-size:0.85rem; margin-left:0.75rem;"></span>
+      </div>
+      <hr />
+
+      <!-- 2. Auto-Save -->
+      <div class="setup-section">
+        <h3>Auto-Save</h3>
+        <label class="toggle-label">
+          <input type="checkbox" id="export-autosave" />
+          <span>Save automatically after each run</span>
+        </label>
+        <div id="export-autosave-form" hidden>
+          <div class="radio-group" style="margin-top:0.75rem;">
+            <label class="radio-label">
+              <input type="radio" name="export-strategy" value="append" />
+              Append to same file
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="export-strategy" value="split" checked />
+              Split into new file
+            </label>
+          </div>
+          <div id="export-split-options" style="margin-top:0.75rem;">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="export-splitby" value="result" checked /> Per result
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="export-splitby" value="size" /> File size
+                <div class="num-input-wrap">
+                  <input type="number" id="export-splitsize" placeholder="MB" min="1" />
+                  <div class="num-input-btns">
+                    <button type="button" class="num-input-btn" data-target="export-splitsize" data-delta="1">▲</button>
+                    <button type="button" class="num-input-btn" data-target="export-splitsize" data-delta="-1">▼</button>
+                  </div>
+                </div>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="export-splitby" value="date" /> Date
+              </label>
+            </div>
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label>File naming</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="export-naming" value="date_num" checked />
+                  {Name}_{Date_Num}
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="export-naming" value="num" />
+                  {Name}_{Num}
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="export-naming" value="datetime" />
+                  {Name}_{DateTime}
+                </label>
+              </div>
+              <span id="export-naming-example" class="text-faint" style="font-size:0.8rem; margin-top:0.3rem; display:block;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <!-- 3. Field Order -->
+      <div class="setup-section">
+        <h3>Field Order</h3>
+        <div id="export-field-order">
+          <p class="text-faint" style="font-size:0.875rem;">Load a result to edit field order.</p>
+        </div>
+      </div>
+      <hr />
+
+      <!-- 4. Preview -->
+      <div class="setup-section">
+        <h3>Preview</h3>
+        <div id="export-preview" class="export-preview">
+          <p class="text-faint" style="font-size:0.875rem;">No result loaded.</p>
+        </div>
+      </div>
+      <hr />
+
+      <!-- 5. Manual Export -->
+      <div class="setup-section">
+        <h3>Export</h3>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <select id="export-run-select" style="max-width:320px;">
+            <option value="">Loading runs…</option>
+          </select>
+          <button id="export-run-btn" class="btn btn-primary" disabled>Export</button>
+        </div>
+        <span id="export-run-status" class="text-muted" style="font-size:0.85rem; margin-top:0.5rem; display:block;"></span>
+      </div>
+
+    </div>
+
+  </main>
+  <script type="module" src="/js/results.js"></script>
+  <script type="module" src="/js/export.js"></script>
+</body>
+</html>

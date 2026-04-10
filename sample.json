@@ -1,0 +1,14 @@
+{
+  "URL": "https://www.example.com/please/scrape/me",
+  "Group_Name": {{
+    "Title": {".class h1.name", "Single", "Text"},
+    "Description": {".class p.name", "Single", "Text"},
+    "Chapter_URL": {".class a.name", "Single", "URL"},
+    "Publish": {".class a.name", "Single", "DateTime"},
+    "Genre": {".class span.name", "All", "Title"},
+  }, "All", "Group"}
+
+  "Comments": {".class span.name", "All", "Text"},
+
+  "Pagination": {"button.next", "Single", "Pagination"}
+}

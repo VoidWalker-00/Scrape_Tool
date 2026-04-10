@@ -1,0 +1,2 @@
+[2026-04-08 22:38:59] [INFO ] Browser launched
+[2026-04-08 22:39:29] [ERROR] Scrape failed: Navigation timeout of 30000 ms exceeded

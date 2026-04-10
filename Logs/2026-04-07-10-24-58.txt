@@ -1,0 +1,19 @@
+[2026-04-07 10:24:58] [INFO ] === Handler Tests ===
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute Text/Single
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute URL/Single
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute DateTime/Single
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute Title/Single
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute Text/All length
+[2026-04-07 10:24:58] [INFO ]   PASS: attribute missing element returns null
+[2026-04-07 10:24:58] [INFO ]   PASS: group Name field
+[2026-04-07 10:24:58] [INFO ]   PASS: group Link field
+[2026-04-07 10:24:58] [INFO ]   PASS: pagination Click with no button returns false
+[2026-04-07 10:24:58] [INFO ]   PASS: run routes Text to attribute
+[2026-04-07 10:24:58] [INFO ] Handler tests complete
+
+[2026-04-07 10:24:58] [INFO ] === Scraper Tests ===
+[2026-04-07 10:24:58] [ERROR] Tests failed: Cannot find module 'puppeteer-core'
+Require stack:
+- /mnt/Work/Coding_Projects/Scrape_Tool/node_modules/puppeteer-extra/dist/index.cjs.js
+- /mnt/Work/Coding_Projects/Scrape_Tool/scraper.js
+- /mnt/Work/Coding_Projects/Scrape_Tool/test.js

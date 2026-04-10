@@ -1,0 +1,29 @@
+{
+  "URL": "https://books.toscrape.com/",
+  "Page_Title": [
+    "h1",
+    "Single",
+    "Text"
+  ],
+  "Book_Details": [
+    {
+      "Titles": [
+        "article.product_pod h3 a",
+        "All",
+        "Title"
+      ],
+      "Prices": [
+        "article.product_pod .price_color",
+        "All",
+        "Text"
+      ],
+      "Links": [
+        "article.product_pod h3 a",
+        "All",
+        "URL"
+      ]
+    },
+    "All",
+    "Group"
+  ]
+}

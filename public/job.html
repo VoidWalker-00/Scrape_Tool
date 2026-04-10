@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job — Scrape Tool</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/job.css" />
+  <link rel="stylesheet" href="/css/notifications.css" />
+</head>
+<body>
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/notifier.js"></script>
+  <main class="tw-main">
+
+    <div class="page-nav">
+      <div class="heading-editable">
+        <h2 id="job-heading">…</h2>
+        <button id="rename-btn" class="btn-icon" title="Rename job">✎</button>
+      </div>
+      <a id="view-results-link" href="#" class="btn btn-ghost btn-sm">View Results →</a>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="config">Config</button>
+      <button class="tab-btn" data-tab="setup">Setup</button>
+    </div>
+
+    <!-- Config tab — form DOM injected by ConfigForm -->
+    <div id="tab-config" class="tab-panel active">
+      <div id="config-form-mount"></div>
+      <hr />
+      <div class="flex gap-1 mt-2" style="align-items:center;">
+        <button id="save-btn" class="btn btn-primary">Save Config</button>
+        <button id="config-run-btn" class="btn">Run Now</button>
+        <span id="save-status" class="text-muted" style="font-size:0.85rem;"></span>
+      </div>
+    </div>
+
+    <!-- Setup tab -->
+    <div id="tab-setup" class="tab-panel">
+
+      <div class="setup-section">
+        <h3>Run</h3>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <button id="run-now-btn" class="btn btn-primary">Run Now</button>
+          <span id="run-status" class="text-muted" style="font-size:0.85rem;"></span>
+        </div>
+      </div>
+      <hr />
+
+      <div class="setup-section">
+        <h3>Schedule</h3>
+        <label class="toggle-label">
+          <input type="checkbox" id="schedule-enabled" />
+          <span>Enable scheduled runs</span>
+        </label>
+
+        <div id="schedule-form" hidden>
+          <div class="radio-group" style="margin-top:0.75rem;">
+            <label class="radio-label">
+              <input type="radio" name="schedule-type" value="once" checked />
+              One-off
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="schedule-type" value="recurring" />
+              Recurring
+            </label>
+          </div>
+
+          <div id="schedule-once">
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label for="schedule-datetime">Date &amp; time</label>
+              <input type="datetime-local" id="schedule-datetime" style="max-width:240px;" />
+            </div>
+          </div>
+
+          <div id="schedule-recurring" hidden>
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label for="schedule-frequency">Frequency</label>
+              <select id="schedule-frequency" style="max-width:160px;">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="schedule-time">Time</label>
+              <input type="time" id="schedule-time" style="max-width:140px;" />
+            </div>
+            <div id="schedule-day-row" class="form-group" hidden>
+              <label for="schedule-day">Day of week</label>
+              <select id="schedule-day" style="max-width:160px;">
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="0">Sunday</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <div class="setup-section">
+        <h3>Request Settings</h3>
+        <div class="form-group">
+          <label for="setting-delay">Delay between pages (ms)</label>
+          <input type="number" id="setting-delay" placeholder="0" min="0" style="max-width:200px;" />
+        </div>
+        <div class="form-group">
+          <label for="setting-max-pages">Max pages (blank = no cap)</label>
+          <input type="number" id="setting-max-pages" placeholder="∞" min="1" style="max-width:200px;" />
+        </div>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <button id="save-settings-btn" class="btn btn-sm">Save Settings</button>
+          <span id="settings-status" class="text-muted" style="font-size:0.85rem;"></span>
+        </div>
+      </div>
+      <hr />
+
+      <div class="setup-section">
+        <h3>Chain Output</h3>
+        <p class="text-muted" style="font-size:0.875rem;">Chain jobs together — coming soon.</p>
+      </div>
+
+    </div>
+  </main>
+  <script type="module" src="/js/job.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[2026-04-10 11:14:13] [INFO ] Browser launched
+[2026-04-10 11:14:16] [INFO ] Navigated to https://books.toscrape.com/
+[2026-04-10 11:14:16] [INFO ] Scraping field "Page_Title" [Text/Single]
+[2026-04-10 11:14:16] [INFO ] Scraping group "Book_Details" [All]
+[2026-04-10 11:14:16] [INFO ] Page 1 scraped
+[2026-04-10 11:14:16] [INFO ] Scrape complete — 1 page(s) collected
+[2026-04-10 11:14:16] [INFO ] Browser closed
+[2026-04-10 11:14:16] [INFO ] [Export] Auto-save skipped — not enabled for job: Test

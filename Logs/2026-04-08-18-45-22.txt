@@ -1,0 +1,5 @@
+[2026-04-08 18:45:23] [INFO ] Browser launched
+[2026-04-08 18:45:26] [INFO ] Navigated to https://example.com
+[2026-04-08 18:45:26] [INFO ] Page 1 scraped
+[2026-04-08 18:45:26] [INFO ] Scrape complete — 1 page(s) collected
+[2026-04-08 18:45:26] [INFO ] Browser closed

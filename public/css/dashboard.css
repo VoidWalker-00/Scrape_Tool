@@ -1,0 +1,151 @@
+/* ── Dashboard layout ────────────────────────────────────────────── */
+
+/* Make main fill the viewport height so we can position the title */
+.dashboard-main {
+  min-height: calc(100vh - 48px); /* 48px = nav height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title: centered horizontally, sitting at ~35% from the top */
+.dashboard-header {
+  text-align: center;
+  padding-top: calc((100vh - 48px) * 0.20);
+  margin-bottom: 2rem;
+}
+
+/* ── Dashboard job grid ──────────────────────────────────────────── */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* Job card */
+.job-card {
+  position: relative;
+  cursor: pointer;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  border-left-width: 3px;
+  transition: border-color var(--transition);
+}
+
+.job-card:hover { border-color: var(--border-hover); }
+
+/* Accent border colours driven by data-health attribute set in _refresh() */
+.job-card[data-health="ok"]    { border-left-color: var(--green);   }
+.job-card[data-health="warn"]  { border-left-color: var(--orange);  }
+.job-card[data-health="error"] { border-left-color: #e05252;        }
+.job-card[data-health="none"]  { border-left-color: var(--border);  }
+
+.job-card .card-content { flex: 1; }
+
+/* Delete button — top-right corner, visible on hover */
+.card-del-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition), background var(--transition);
+}
+
+.job-card:hover .card-del-btn { opacity: 1; }
+.card-del-btn:hover            { background: #e74c3c22; }
+
+/* Run icon button — green background */
+.card-run-btn {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #1a1a1a !important;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-run-btn:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Button row — bottom of the card, above the sparkline */
+.card-btn-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.job-card:hover .card-btn-row { opacity: 1; }
+
+.card-name {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-normal);
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.card-meta {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-top: 0.5rem;
+}
+
+/* + New job card */
+.job-card-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  cursor: pointer;
+  color: var(--text-faint);
+  font-size: 2rem;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.job-card-new:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Inline new-job prompt replaces the + card */
+.new-job-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 120px;
+  justify-content: center;
+}
+
+.new-job-error {
+  font-size: 0.8rem;
+  color: var(--danger);
+  min-height: 1.2em;
+}

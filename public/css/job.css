@@ -1,0 +1,178 @@
+/* ── Job detail page ─────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover { color: var(--text-normal); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.setup-section { margin-bottom: 2rem; }
+.setup-section h3 { margin-bottom: 0.75rem; }
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.radio-label input[type="radio"]:checked {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.radio-label input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Enable toggle */
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--text-normal);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 2rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: var(--bg-interactive);
+  border: 1px solid var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.toggle-label input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--text-faint);
+  transition: left var(--transition), background var(--transition);
+}
+
+.toggle-label input[type="checkbox"]:checked {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.toggle-label input[type="checkbox"]:checked::after {
+  left: calc(100% - 3px - 0.65rem);
+  background: var(--accent);
+}
+
+/* Editable heading wrapper */
+.heading-editable {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.heading-editable h2 {
+  margin-bottom: 0;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--radius-m);
+  line-height: 1;
+  transition: color var(--transition), background var(--transition);
+}
+
+.btn-icon:hover {
+  color: var(--text-normal);
+  background: var(--bg-interactive);
+}
+
+/* Inline rename input — matches h2 size */
+.rename-input {
+  font-size: 1.55rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-normal);
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-m);
+  padding: 0.1rem 0.4rem;
+  outline: none;
+  width: 20rem;
+}
+
+.rename-input.rename-error {
+  border-color: var(--danger);
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0);    }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px);  }
+}
