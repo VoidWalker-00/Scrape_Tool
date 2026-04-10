@@ -1,4 +1,0 @@
-[2026-04-10 11:13:59] [INFO ] [Export] Starting export — job: Test, run: Test-1775752964190
-[2026-04-10 11:13:59] [INFO ] [Export] Flattened 20 row(s), 4 column(s)
-[2026-04-10 11:13:59] [INFO ] [Export] Output path resolved: /tmp/test_notify_001.json
-[2026-04-10 11:13:59] [INFO ] [Export] Saved to /tmp/test_notify_001.json

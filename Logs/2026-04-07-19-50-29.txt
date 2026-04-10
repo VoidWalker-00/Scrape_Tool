@@ -1,7 +1,0 @@
-[2026-04-07 19:50:29] [ERROR] Scrape failed: Failed to launch the browser process:  Code: null
-
-stderr:
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-

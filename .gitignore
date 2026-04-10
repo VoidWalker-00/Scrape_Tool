@@ -1,0 +1,4 @@
+node_modules/
+Logs/
+Data/Results/
+*.tmp
